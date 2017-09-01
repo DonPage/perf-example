@@ -42,6 +42,7 @@
 <img data-src="images/img5.jpg" src="" class="lazy" alt="">
 
 <script>
+  console.time('load');
   var observer;
   var images = document.querySelectorAll('.lazy');
 
@@ -64,12 +65,13 @@
           threshhold: [.15]
         });
         createObserver();
+        return console.time('load');
       } catch (e) {
         console.log(`could not use IntersectionObserver:`);
         for (var i = 0; i < images.length; i++) {
           images[i].src = images[i].dataset.src;
         }
-
+        return console.time('load');
       }
   }, false)
 </script>
