@@ -65,13 +65,13 @@
           threshhold: [.15]
         });
         createObserver();
-        return console.time('load');
+        return console.timeEnd('load');
       } catch (e) {
         console.log(`could not use IntersectionObserver:`);
         for (var i = 0; i < images.length; i++) {
           images[i].src = images[i].dataset.src;
         }
-        return console.time('load');
+        return console.timeEnd('load');
       }
   }, false)
 </script>
