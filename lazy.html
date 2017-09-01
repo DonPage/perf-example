@@ -48,7 +48,7 @@
   });
 
   function inView(changes) {
-     changes.forEach(change => {
+     changes.forEach(function(change) {
          if(change.isIntersecting) {
              change.target.src = change.target.dataset.src;
              observer.unobserve(change.target);
@@ -57,7 +57,7 @@
   }
 
   const createObserver = function() {
-      images.forEach(img => observer.observe(img))
+      images.forEach(function(img) {observer.observe(img)})
   };
 
   window.addEventListener('load', function() {
