@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lazy load</title>
+    <style>
+      body {
+        margin: 5px;
+        line-height: 1.6;
+        font-size: 18px;
+        color: #444;
+        padding: 0 10px;
+      }
+      img {
+        max-width: 97vw;
+      }
+      div.spacer {
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+</head>
+<body>
+<h1>Lazy-load with intersection observer</h1>
+
+<img src="images/img1.jpg" alt="">
+
+<div class="spacer"></div>
+
+<img src="images/img2.jpg" alt="">
+
+<div class="spacer"></div>
+
+<img data-src="images/img3.jpg" src="" class="lazy" alt="">
+
+<div class="spacer"></div>
+
+<img data-src="images/img4.jpg" src="" class="lazy" alt="">
+
+<div class="spacer"></div>
+
+<img data-src="images/img5.jpg" src="" class="lazy" alt="">
+
+<script>
+  const images = document.querySelectorAll('.lazy');
+  const observer = new IntersectionObserver(inView, {
+      threshhold: [.15]
+  });
+
+  function inView(changes) {
+     changes.forEach(change => {
+         if(change.isIntersecting) {
+             change.target.src = change.target.dataset.src;
+             observer.unobserve(change.target);
+         }
+     })
+  }
+
+  const createObserver = function() {
+      images.forEach(img => observer.observe(img))
+  };
+
+  window.addEventListener('load', function() {
+      createObserver();
+  }, false)
+  // https://corydowdy.com/blog/lazy-loading-images-with-intersection-observer
+</script>
+</body>
+</html>
