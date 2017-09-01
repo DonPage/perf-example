@@ -65,12 +65,11 @@
         });
         createObserver();
       } catch (e) {
-        images.for(function(e) {
+        images.forEach(function(e) {
             e.target.src = e.target.dataset.src;
         })
       }
   }, false)
-  // https://corydowdy.com/blog/lazy-loading-images-with-intersection-observer
 </script>
 </body>
 </html>
