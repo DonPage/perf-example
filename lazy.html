@@ -66,9 +66,9 @@
         createObserver();
       } catch (e) {
         console.log(`could not use IntersectionObserver:`);
-        images.forEach(function(e) {
-            e.target.src = e.target.dataset.src;
-        });
+        for (var i = 0; i < images.length; i++) {
+          images[i].src = images[i].dataset.src;
+        }
 
       }
   }, false)
