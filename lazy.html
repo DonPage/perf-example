@@ -43,9 +43,7 @@
 
 <script>
   const images = document.querySelectorAll('.lazy');
-  const observer = new IntersectionObserver(inView, {
-      threshhold: [.15]
-  });
+  let observer;
 
   function inView(changes) {
      changes.forEach(function(change) {
@@ -62,6 +60,9 @@
 
   window.addEventListener('load', function() {
       try {
+       observer = new IntersectionObserver(inView, {
+          threshhold: [.15]
+        });
         createObserver();
       } catch (e) {
         images.for(function(e) {
