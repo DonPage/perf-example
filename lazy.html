@@ -43,7 +43,7 @@
 
 <script>
   var observer;
-  const images = document.querySelectorAll('.lazy');
+  var images = document.querySelectorAll('.lazy');
 
   function inView(changes) {
      changes.forEach(function(change) {
@@ -65,9 +65,11 @@
         });
         createObserver();
       } catch (e) {
+        console.log(`could not use IntersectionObserver:`);
         images.forEach(function(e) {
             e.target.src = e.target.dataset.src;
-        })
+        });
+
       }
   }, false)
 </script>
