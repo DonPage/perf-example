@@ -61,7 +61,13 @@
   };
 
   window.addEventListener('load', function() {
-      createObserver();
+      try {
+        createObserver();
+      } catch (e) {
+        images.for(function(e) {
+            e.target.src = e.target.dataset.src;
+        })
+      }
   }, false)
   // https://corydowdy.com/blog/lazy-loading-images-with-intersection-observer
 </script>
